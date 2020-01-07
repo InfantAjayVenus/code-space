@@ -19,42 +19,61 @@ public class MergeSort {
     }
 
     private void sortedMerge(int rangeStart, int rangeMid, int rangeEnd) {
-        int firstListIndex = rangeStart, secondListIndex = rangeMid + 1, index = rangeStart;
+        int[] mergedList = new int[rangeEnd - rangeStart + 1];
+        int index = 0, firstListIndex = rangeStart, secondListIndex = rangeMid + 1;
 
-        while(index < rangeEnd) {
-            if(this.list[firstListIndex] < this.list[secondListIndex]) {
-                int temp = this.list[index];
-                this.list[index++] = list[firstListIndex];
-                list[firstListIndex++] = temp;
-            }else{
-                int temp = this.list[index];
-                this.list[index++] = list[secondListIndex];
-                list[secondListIndex++] = temp;
+        while (index < mergedList.length) {
+
+            if (firstListIndex > rangeMid) {
+                for (int i = secondListIndex; i <= rangeEnd; i++) {
+                    mergedList[index++] = this.list[i];
+                }
+                break;
             }
+
+            if (secondListIndex > rangeEnd) {
+                for (int i = firstListIndex; i <= rangeMid; i++) {
+                    mergedList[index++] = this.list[i];
+                }
+                break;
+            }
+
+            if (this.list[firstListIndex] < this.list[secondListIndex]) {
+                mergedList[index] = this.list[firstListIndex++];
+            } else {
+                mergedList[index] = this.list[secondListIndex++];
+            }
+
+            index++;
         }
+
+        index = rangeStart;
+
+        for (int num : mergedList) {
+            this.list[index++] = num;
+        }
+
     }
 
     private void sort(int rangeStart, int rangeEnd) {
-        if (rangeEnd < rangeStart){
-            int rangeMid = (rangeStart + rangeEnd)/2;
+        if (rangeStart < rangeEnd) {
+            int rangeMid = (rangeStart + rangeEnd) / 2;
 
             this.sort(rangeStart, rangeMid);
-            this.sort(rangeMid+1, rangeEnd);
+            this.sort(rangeMid + 1, rangeEnd);
             this.sortedMerge(rangeStart, rangeMid, rangeEnd);
         }
     }
 
     public int[] sort(int[] inputList) {
         this.list = inputList;
-        this.sort(0, inputList.length);
+        this.sort(0, inputList.length - 1);
         return this.list;
     }
 
     public static void main(String[] args) {
         MergeSort sortingObj = new MergeSort();
-        sortingObj.printArray(sortingObj.sort(new int[] {2, 6, 3, 9, 1, 5}), "sort(2, 6, 3, 9, 1, 5)");
-        // MergeSort.printArray(MergeSort.sort(new int[] { 2, 6, 3, 9, 1, 5 }), "sort(2, 6, 3, 9, 1, 5)");
-        // System.out.println("sort(2, 6, 3, 9, 1) => " + MergeSort.sort(new int[] { 2,
-        // 6, 3, 9, 1 }));
+        sortingObj.printArray(sortingObj.sort(new int[] { 2, 6, 3, 9, 1, 5 }), "sort(2, 6, 3, 9, 1, 5)");
+        sortingObj.printArray(sortingObj.sort(new int[] { 2, 6, 3, 9, 1 }), "sort(2, 6, 3, 9, 1)");
     }
 }
