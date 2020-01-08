@@ -5,18 +5,15 @@ const sortedInsert = (inputList, pivotElement) => ([
 ]);
 
 const sort = (inputList) => {
+
     if (inputList.length > 1) {
 
-        console.log(`pivot: ${inputList[inputList.length/2]}`);
-        
-        const [firstList, pivotElement, secondList] = sortedInsert(inputList, inputList[inputList.length/2]);
+        const [firstList, pivotElement, secondList] = sortedInsert(inputList, inputList[0]);
 
-        console.log(`FirstList: ${firstList}; SecondList: ${secondList}`);
-        
         return [
-            ...(firstList!==undefined?[...sort(firstList)]:[]),
+            ...(firstList ? [...sort(firstList)] : []),
             pivotElement,
-            ...(secondList!==undefined?[...sort(secondList)]:[]),
+            ...(secondList ? [...sort(secondList)] : [])
         ];
 
     } else {
