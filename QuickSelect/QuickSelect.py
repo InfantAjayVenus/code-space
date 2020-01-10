@@ -1,4 +1,4 @@
-def sortedInsert(inputList, pivotPosition) :
+def sortedPartition(inputList, pivotPosition) :
     forwardIndex = 0
     backwardIndex = len(inputList) - 1
     pivotElement = inputList[pivotPosition]
@@ -19,7 +19,7 @@ def getKthSmallest(inputList, k):
     if k < 1 or k > len(inputList):
         return "Key Term exceeds list range"
  
-    pivotPosition = sortedInsert(inputList, 0)
+    pivotPosition = sortedPartition(inputList, 0)
 
     if pivotPosition == k - 1 :
         return inputList[pivotPosition]
