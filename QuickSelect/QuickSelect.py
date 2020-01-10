@@ -14,23 +14,22 @@ def sortedInsert(inputList, pivotPosition) :
 
     return forwardIndex
 
+
 def getKthSmallest(inputList, k):
     if k < 1 or k > len(inputList):
         return "Key Term exceeds list range"
-    
-    print("Input List: {}; Key Term: {}".format(inputList, k))
+ 
     pivotPosition = sortedInsert(inputList, 0)
-    print("After Insert: List => {}; PivotPosition => {}".format(inputList, pivotPosition))
 
     if pivotPosition == k - 1 :
-        return inputList[pivotPosition - 1]
-    elif pivotPosition >= k:
+        return inputList[pivotPosition]
+    elif pivotPosition > k - 1:
         return getKthSmallest(inputList[:pivotPosition], k)
     else:
-        return getKthSmallest(inputList[pivotPosition+1:], k - pivotPosition + 1 )
+        return getKthSmallest(inputList[pivotPosition+1:], k - pivotPosition - 1 )
 
-# print("1st Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 1)))
+print("1st Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 1)))
 print("4th Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 4)))
-# print("last Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 6)))
-# print("0th Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 0)))
-# print("7th Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 7)))
+print("last Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 6)))
+print("0th Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 0)))
+print("7th Smallest(2, 6, 3, 9, 1, 5) => {}".format(getKthSmallest([2, 6, 3, 9, 1, 5], 7)))
