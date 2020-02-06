@@ -9,7 +9,7 @@ func main() {
 
 func sort(inputList []int) []int {
 	inputList = buildMaxHeap(inputList)
-	fmt.Println(inputList)
+
 	for i:= len(inputList) - 1; i >= 0; i-- {
 		inputList[i], inputList[0] = inputList[0], inputList[i]
 		maxHeapify(inputList[0:i], 0)
@@ -41,7 +41,7 @@ func maxHeapify(inputList []int, rootIndex int) []int {
 
 	if maxIndex != rootIndex {
 		inputList[maxIndex], inputList[rootIndex] = inputList[rootIndex], inputList[maxIndex]
-		return maxHeapify(inputList, rootIndex)
+		return maxHeapify(inputList, maxIndex)
 	}
 
 	return inputList
