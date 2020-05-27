@@ -12,7 +12,7 @@
     quicksort({4,3,9,8,5},3,4) -> pivot => 9 8<9 true, swap(8,8), 9<=9 true swap(9,9) => arr-> 3,4,5,8,9.
     output => 3,4,5,8,9
 */
-#include<bits/stdc++.h>
+#include<iostream>
 void swap(int *a,int *b)
 {
     int temp;
